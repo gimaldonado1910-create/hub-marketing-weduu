@@ -640,8 +640,8 @@
     position:sticky;top:0;z-index:100;
   }
   .apv-top-left{display:flex;align-items:center;gap:14px}
-  .apv-top-left img{width:96px}
-  .apv-top-title{font-size:13px;font-weight:600}
+  .apv-top-left img{height:30px;width:auto}
+  .apv-top-title{font-size:13px;font-weight:600;padding-left:14px;border-left:1px solid var(--hb-line)}
   .apv-top-title small{display:block;color:var(--hb-muted);font-size:10.5px;font-weight:400;margin-top:1px}
   .apv-top-right{display:flex;align-items:center;gap:12px}
   .apv-user-chip{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--hb-muted)}
@@ -649,7 +649,7 @@
   .apv-logout-btn{border:1px solid var(--hb-line);background:#fff;border-radius:999px;padding:8px 14px;font-size:11.5px;font-weight:600;color:var(--hb-black)}
 
   .apv-main{max-width:1080px;margin:0 auto;padding:28px 22px 60px}
-  .apv-eyebrow{font-size:10px;color:var(--hb-orange);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .apv-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--hb-orange);font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#fff1ea;padding:6px 14px;border-radius:999px}
   .apv-main h1{font-size:26px;letter-spacing:-.02em;margin:6px 0 6px}
   .apv-sub{margin:0 0 22px;color:var(--hb-muted);font-size:13px;max-width:640px;line-height:1.6}
 
@@ -693,7 +693,7 @@
 
   @media(max-width:640px){
     .apv-top{padding:0 14px}
-    .apv-top-left img{width:78px}
+    .apv-top-left img{height:24px}
     .apv-main{padding:20px 14px 50px}
   }
 </style>
@@ -1658,7 +1658,8 @@ function ApprovalApp({ username, dbRef, onReturn }) {
     salvar(c.id, { comentariosAprovacao: novos });
   }
 
-  return h(React.Fragment, null,
+  return h("div", { className:"hb" },
+    h("div", { className:"hb-shell" },
     h("div", { className:"apv-top" },
       h("div", { className:"apv-top-left" },
         h("img", { src:WEDUU_LOGO, alt:"Weduu" }),
@@ -1688,6 +1689,7 @@ function ApprovalApp({ username, dbRef, onReturn }) {
               onComentar:texto=>comentar(c,texto),
             })))
           : h("div", { className:"apv-empty-state" }, "Nenhum conteúdo classificado para aprovação ainda."),
+    )
     )
   );
 }
